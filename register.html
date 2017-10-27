@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.9.1.js"></script>
+		<!--<script src="js/slide.js"></script>-->
+		<script src="js/register.js"></script>
+
+		<script type="text/javascript">
+			var xhttp;
+
+			function fname() {
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (xhttp.readyState == 4 && xhttp.status == 200) {
+						var s = xhttp.responseText;
+						alert(s);
+						if (s == "yes") {
+							document.getElementById("nid").innerText = "可以注册";
+						} else {
+							document.getElementById("nid").innerText = "不可以注册";
+						}
+					}
+				}
+				var na = document.getElementById("name").value;
+				var url = "../App/RegisterServlet";
+				xhttp.open("POST", url, true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send("id=1&name=" + na);
+			}
+
+			function fpwd() {
+				xhttp = new XMLHttpRequest();
+				var pwd1 = document.getElementById("pwd1").value;
+				var pwd2 = document.getElementById("pwd2").value;
+				var url = "../App/RegisterServlet";
+				xhttp.open("POST", url, true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send("id=2&pwd1=" + pwd1 + "&pwd2=" + pwd2);
+				xhttp.onreadystatechange = function() {
+					if (xhttp.readyState == 4 && xhttp.status == 200) {
+						var s = xhttp.responseText;
+						alert(s);
+						if (s == "yes") {
+							document.getElementById("pid").innerText = "密码正确";
+						} else {
+							document.getElementById("pid").innerText = "密码错误";
+						}
+					}
+				}
+			}
+
+			function ydata() {
+				xhttp = new XMLHttpRequest();
+				var pdate = document.getElementById("date").value;
+				var url = "../App/RegisterServlet";
+				xhttp.open("POST", url, true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send("id=3&date=" + pdate);
+				xhttp.onreadystatechange = function() {
+					if (xhttp.readyState == 4 && xhttp.status == 200) {
+						var s = xhttp.responseText;
+						//		alert(s);
+						if (s == "yes") {
+							document.getElementById("pdate").innerText = "日期格式正确";
+						} else {
+							document.getElementById("pdate").innerText = "输入正确的日期格式yyyy-MM-dd ";
+						}
+					}
+				}
+			}
+		</script>
+		<link rel="shortcut icon" href="/templates/default/images/favicon.ico" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.w {
+				width: 1210px;
+				margin: 0 auto;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			.clearfix:after {
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden;
+			}
+			
+			.clearfix {
+				zoom: 1;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			.top {
+				width: 1210px;
+				height: 100px;
+			}
+			
+			.warp {
+				height: 100px;
+				width: 400px;
+				float: right;
+			}
+			
+			.warp a:hover {
+				color: red;
+				text-decoration: underline;
+			}
+			
+			.top-le {
+				float: left;
+			}
+			
+			.warp ul li {
+				float: left;
+				padding: 10px;
+				margin: 5px auto;
+				font-size: 14px;
+			}
+			/*通栏开始*/
+			
+			.top-banner {
+				height: 60px;
+				background: darkblue;
+				margin-bottom: 17px;
+			}
+			
+			.notice a,
+			.broadcast a {
+				color: white;
+				text-align: center;
+			}
+			
+			.notice {
+				width: 350px;
+				height: 60px;
+				color: #fff;
+				font-size: 12px;
+				position: relative;
+				float: left;
+				overflow: hidden;
+			}
+			
+			.view {
+				/*width: 100%;*/
+				height: 40px;
+				overflow: hidden;
+			}
+			
+			.notice ul {
+				height: 60px;
+				position: absolute;
+				left: 38px;
+				top: 0;
+				line-height: 30px;
+			}
+			
+			.notice ul li {
+				-webkit-animation: move 3s linear infinite;
+				        animation: move 3s linear infinite;
+			}
+			
+			@-webkit-keyframes move {
+				0% {
+					-webkit-transform: translateY(0px);
+					        transform: translateY(0px);
+				}
+				100% {
+					-webkit-transform: translateY(-150px);
+					        transform: translateY(-150px);
+				}
+			}
+			
+			@keyframes move {
+				0% {
+					-webkit-transform: translateY(0px);
+					        transform: translateY(0px);
+				}
+				100% {
+					-webkit-transform: translateY(-150px);
+					        transform: translateY(-150px);
+				}
+			}
+			
+			.notice ul li,
+			.broadcast ul li {
+				float: left;
+			}
+			
+			.broadcast {
+				width: 500px;
+				color: white;
+				height: 60px;
+				font-size: 12px;
+				position: relative;
+				float: left;
+				overflow: hidden;
+			}
+			
+			.broadcast ul {
+				position: absolute;
+				left: 38px;
+				height: 120px;
+				top: 0;
+				line-height: 30px;
+			}
+			
+			.broadcast ul li {
+				-webkit-animation: move1 1s linear infinite;
+				        animation: move1 1s linear infinite;
+			}
+			
+			@-webkit-keyframes move1 {
+				0% {
+					-webkit-transform: translateY(0px);
+					        transform: translateY(0px);
+				}
+				100% {
+					-webkit-transform: translateY(-50px);
+					        transform: translateY(-50px);
+				}
+			}
+			
+			@keyframes move1 {
+				0% {
+					-webkit-transform: translateY(0px);
+					        transform: translateY(0px);
+				}
+				100% {
+					-webkit-transform: translateY(-50px);
+					        transform: translateY(-50px);
+				}
+			}
+			
+			.search {
+				height: 60px;
+				text-align: center;
+				padding-top: 20px;
+				font-size: 12px;
+			}
+			
+			.search select {
+				height: 25px;
+				width: 50px;
+			}
+			
+			.search #seinp {
+				height: 25px;
+				width: 180px;
+				border: hidden;
+				margin-left: -4px;
+			}
+			
+			.search #sub {
+				height: 25px;
+				width: 60px;
+				border: hidden;
+				background: #D28F1E;
+				margin-left: -4px;
+			}
+			/*注册大盒子开始*/
+			
+			.logon-box {
+				width: 1000px;
+				height: 420px;
+				border: 7px solid #e8e8e8;
+				margin-bottom: 50px;
+			}
+			
+			.logon-left,
+			.logon-footer {
+				height: 420px;
+				width: 520px;
+			}
+			
+			.logon-left {
+				float: left;
+			}
+			
+			.head,
+			.logon-footer,
+			.logon-rtop {
+				height: 55px;
+				width: 380px;
+				color: #555;
+				line-height: 55px;
+				padding-left: 25px;
+			}
+			
+			.logon-lcon ul li {
+				float: left;
+				height: 50px;
+				color: #ccc;
+				margin-bottom: 20px;
+				padding: 5px 20px;
+			}
+			
+			.logon-lcon ul li span {
+				display: inline-block;
+				height: 50px;
+			}
+			
+			#pic1 {
+				background: url("images/logon.png") no-repeat -304px -46px;
+			}
+			
+			#pic2 {
+				background: url("images/logon.png") no-repeat -258px 0;
+			}
+			
+			#pic3 {
+				background: url("images/logon.png") no-repeat -354px 0;
+			}
+			
+			#pic4 {
+				background: url("images/logon.png") no-repeat -304px 0;
+			}
+			
+			#pic5 {
+				background: url("images/logon.png") no-repeat -354px -46px;
+			}
+			
+			#pic6 {
+				background: url("images/logon.png") no-repeat -258px -46px;
+			}
+			
+			.logon-lcon ul img {
+				display: inline-block;
+				margin-left: 20px;
+				margin-right: 10px;
+				border: none;
+				outline: none;
+			}
+			
+			.logon-a p {
+				width: 400px;
+				height: 40px;
+				line-height: 30px;
+				color: #ccc;
+				padding: 10px 45px;
+				font-size: 12px;
+			}
+			
+			.logon-a #login-a {
+				display: inline-block;
+				height: 30px;
+				width: 45px;
+				border-radius: 7px;
+				padding-left: 15px;
+				background: #ccc;
+				margin: 0 10px;
+			}
+			
+			.logon-a #login-a:hover {
+				background: #FF4924;
+			}
+			
+			#retrieve {
+				color: blue;
+				font-weight: 700;
+				padding-left: 10px;
+			}
+			/*注册盒子右边开始*/
+			
+			.logon-right {
+				height: 420px;
+				width: 480px;
+				float: right;
+				position: relative;
+			}
+			
+			label {
+				display: inline-block;
+				height: 20px;
+				width: 100px;
+				padding: 15px 10px;
+			}
+			
+			.logon-right input {
+				height: 30px;
+				width: 300px;
+				border: 1px solid #ccc;
+			}
+			
+			#yzm {
+				width: 100px;
+			}
+			
+			.logon-right span {
+				height: 26px;
+				width: 90px;
+				position: absolute;
+				bottom: 125px;
+				left: 232px;
+				background: url("images/login/yzm.png") no-repeat;
+			}
+			
+			#submit {
+				margin-left: 640px;
+				position: relative;
+				top: -80px;
+				width: 100px;
+				height: 38px;
+				background: red;
+				border-radius: 10px;
+				border: none;
+			}
+			
+			.logon-rtop #submit:hover {
+				background: orangered;
+			}
+			
+			.check-box {
+				position: relative;
+			}
+			
+			.check-box input {
+				float: left;
+				position: absolute;
+				bottom: 85px;
+				left: 790px;
+			}
+			
+			.check-box p {
+				float: right;
+				position: absolute;
+				font-size: 12px;
+				bottom: 85px;
+				left: 810px;
+			}
+			
+			.mask {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				opacity: 0.5;
+				display: none;
+			}
+			
+			.form-add {
+				position: fixed;
+				top: 0%;
+				left: 25%;
+				width: 820px;
+				background: #fff;
+				display: none;
+			}
+			
+			.form-add-title {
+				background-color: #f7f7f7;
+				border-width: 1px 1px 0 1px;
+				border-bottom: 0;
+				margin-bottom: 15px;
+				position: relative;
+			}
+			
+			.form-add-title span {
+				width: auto;
+				height: 18px;
+				font-size: 16px;
+				font-family: 宋体;
+				font-weight: bold;
+				color: rgb(102, 102, 102);
+				text-indent: 12px;
+				padding: 8px 0px 10px;
+				margin-right: 10px;
+				display: block;
+				overflow: hidden;
+				text-align: left;
+			}
+			
+			.form-add-title div {
+				width: 16px;
+				height: 20px;
+				position: absolute;
+				right: 10px;
+				top: 6px;
+				font-size: 30px;
+				line-height: 16px;
+				cursor: pointer;
+			}
+			
+			.form-submit {
+				width: 820px;
+				height: 100px;
+				text-align: center;
+			}
+			
+			.form-submit input {
+				position: fixed;
+				top: 530px;
+				left: 650px;
+				width: 170px;
+				height: 42px;
+				background-color: #fff;
+			}
+			/*.wrong {
+				color: red;
+				background: url(images/login/error.png) no-repeat right top;
+			}
+			
+			.right {
+				color: green;
+				background: url(images/login/right.png) no-repeat right top;
+			}*/
+			/*注册盒子右边结束*/
+			/*大盒子结束*/
+			/*footer开始*/
+			
+			.footer {
+				height: 95px;
+				background: #f8f8f8;
+				font-size: 12px;
+			}
+			
+			.footer-con {
+				width: 910px;
+				height: 60px;
+				margin: 0 auto;
+			}
+			
+			.footer-con ul li {
+				float: left;
+				padding-left: 23px;
+			}
+			
+			.footer-con ul {
+				padding-top: 27px;
+			}
+			
+			.footer-con ul a {
+				color: #999;
+			}
+			
+			.footer-con ul a:hover {
+				text-decoration: underline;
+			}
+			
+			.hotline {
+				width: 500px;
+				height: 50px;
+				margin: 0 auto;
+				color: #999;
+			}
+			/*footer结束*/
+		</style>
+	</head>
+
+	<body>
+		<div class="top w">
+			<div class="top-le">
+				<a href=""><img src="images/login/big_logo.jpg" id="top-img"></a>
+			</div>
+			<div class="warp">
+				<ul class="top-new-r">
+					<li><a href="#">资讯</a></li>
+					<li><a href="#">求购</a></li>
+					<li><a href="#">转让</a></li>
+					<li><a href="#">晒宝</a></li>
+					<li><a href="#">店铺</a></li>
+					<li><a href="#">会员</a></li>
+					<li><a href="#">排行</a></li>
+					<li><a href="#">热点</a></li><br>
+					<li><a href="#">问答</a></li>
+					<li><a href="#">投资</a></li>
+					<li><a href="#">鉴定</a></li>
+					<li><a href="#">知识</a></li>
+					<li><a href="#">仲裁</a></li>
+					<li><a href="#">版主</a></li>
+					<li><a href="#">规则</a></li>
+					<li><a href="#">行情</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--顶部结束-->
+		<!--通栏开始-->
+		<div class="top-banner ">
+			<div class="w">
+				<div class="notice">
+					<a href="#">公告：</a>
+					<div class="view">
+						<ul class="notice-con" id="notice-con">
+
+							<li>近日网站经常受到攻击出错</li><br>
+							<li>批量上传图片功能上线</li><br>
+							<li>图片自动压缩功能上线</li><br>
+							<li>不能上传图片超过2M看这里</li><br>
+							<li>页面错乱功能看这里</li><br>
+
+							<li>近日网站经常受到攻击出错</li><br>
+							<li>批量上传图片功能上线</li><br>
+							<li>图片自动压缩功能上线</li><br>
+							<li>不能上传图片超过2M看这里</li><br>
+							<li>页面错乱功能看这里</li><br>
+
+						</ul>
+					</div>
+				</div>
+				<div class="broadcast">
+					<a href="#">广播：</a>
+					<div class="view">
+						<ul>
+							<li>买老不买新</li><br>
+							<li>佑福阁新店七折酬宾</li><br>
+							<li>买老不买新</li><br>
+							<li>佑福阁新店七折酬宾</li><br>
+						</ul>
+					</div>
+				</div>
+				<div class="search">
+					<select>
+                <option>商品</option>
+                <option>店铺</option>
+            </select>
+					<input type="text" value="请输入搜索的商品名称" width="350px" height="30px" style="color: #ccc;" id="seinp">
+					<input type="submit" value="搜索" id="sub">
+				</div>
+			</div>
+		</div>
+		<!--注册大盒子开始-->
+		<div class="logon-box w">
+			<div class="logon-left  clearfix">
+				<div class="head">
+					<h3>注册之后您可以</h3></div>
+				<div class="logon-lcon">
+					<ul class="clearfix">
+						<li> <img id="pic1" width="50px" height="50px"><span class="clearfix">购买商品支付订单</span></li>
+						<li><img id="pic2" width="50px" height="50px"><span class="clearfix">申请开店销售商品</span></li>
+						<li><img id="pic3" width="50px" height="50px"><span class="clearfix">空间好友推送分享</span></li>
+						<li><img id="pic4" width="50px" height="50px"><span class="clearfix">收藏商品关注店铺</span></li>
+						<li><img id="pic5" width="50px" height="50px"><span class="clearfix">商品咨询服务评价</span></li>
+						<li><img id="pic6" width="50px" height="50px"><span class="clearfix">安全交易诚信无忧</span></li>
+					</ul>
+					<div class="logon-footer">
+						<h3>如果您是本站会员</h3></div>
+					<div class="logon-a">
+						<p>我已经注册过帐号，立即<a href="login.html" id="login-a">登录</a>或是<a href="#" id="retrieve">找回密码？</a></p>
+					</div>
+				</div>
+			</div>
+			<!--注册盒子右边开始-->
+			<!--注册盒子右边结束-->
+			<div class="logon-right clearfix">
+				<div class="logon-rtop">
+					<h3>用户注册</h3></div>
+				<form action="loginSuccess.html" method="get">
+					<label>用户名</label><input class="clearfix" name="name" id="name" type="text" onblur="fname()" /><span id="nid"></span>
+					<label>设置密码</label><input class="clearfix" name="pwd1" id="pwd1" type="password" />
+					<label>再次输入密码</label><input id="pwd2" onblur="fpwd()" type="password" class="clearfix"><span id="pid"></span>
+					<label>输入年月日</label><input class="clearfix" name="date" id="date" type="text" onblur="ydata()" /><span id="pdate"></span>
+					<label>验证码:</label><input type="text" id="yzm" class="clearfix" id="yzm"><span></span></div>
+			<input type="submit" class="clearfix" value="立即注册" id="submit">
+			</form>
+			<div class="check-box clearfix" id="c">
+				<input type="checkbox">
+				<p>阅读并同意<a href="#" style="color: #FF4924;">服务协议</a></p>
+			</div>
+		</div>
+		</div>
+
+
+		<div id="j_mask" class="mask"></div>
+		<div id="j_formAdd" class="form-add">
+			<div class="form-add-title ">
+				<span>中国收藏网站用户注册协议</span>
+				<div id="j_hideFormAdd">x</div>
+			</div>
+
+			<div class="div2 " style="position:relation;overflow:scroll ;height:450px; ">
+				<div style="height:600px;width:700px;margin:0 auto; ">
+					<p>中国收藏网站用户注册协议</p>
+					<p>
+						本协议是您与本网站之间就京东网站服务等相关事宜所订立的契约， 请您仔细阅读本注册协议，您点击;同意并继续;按钮后，本协议即构成对双方有约束力的法律文件。
+					</p>
+					<p> 第1条 本站服务条款的确认和接纳 </p>
+					<p> 1.1本站的各项电子服务的所有权和运作权归京东所有。用户同意所有注册协议条款并完成注册程序，才能成为本站的正式用户。用户确认：本协议条款是处理双方权利义务的契约，始终有效，法律另有强制性规定或双方另有特别约定的，依其规定。</p>
+					<p> 1.2用户点击同意本协议的，即视为用户确认自己具有享受本站服务、下单购物等相应的权利能力和行为能力 能够独立承担法律责任。 </p>
+					<p> 1.3如果您在18周岁以下，您只能在父母或监护人的监护参与下才能使用本站。</p>
+					<p> 1.4京东保留在中华人民共和国大陆地区法施行之法律允许的范围内独自决定拒绝服务、关闭用户账户、 清除或编辑内容或取消订单的权利。 </p>
+
+					<p>第2条 本站服务></p>
+					<p> 2.1京东通过互联网依法为用户提供互联网信息等服务, 用户在完全同意本协议及本站规定的情况下，方有权使用本站的相关服务。 </p>
+
+					<p> 2.2用户必须自行准备如下设备和承担如下开支：（1）上网设备，包括并不限于电脑或者其他上网终端、 调制解调器及其他必备的上网装置；（2）上网开支，包括并不限于网络接入费、上网设备租用费、手机流量费等。
+					</p>
+
+					<p>第3条 用户信息</p>
+					<p>3.1用户应自行诚信向本站提供注册资料，用户同意其提供的注册资料真实、准确、完整、合法有效， 用户注册资料如有变动的，应及时更新其注册资料。如果用户提供的注册资料不合法、不真实、不准确、 不详尽的，用户需承担因此引起的相应责任及后果，并且京东保留终止用户使用京东各项服务的权利。
+					</p>
+
+					<p> 3.2用户在本站进行浏览、下单购物等活动时，涉及用户真实姓名/名称、通信地址、联系电话、 电子邮箱等隐私信息的，本站将予以严格保密，除非得到用户的授权或法律另有规定，本站不会向外界披露用户隐私信息。
+						<p> 3.3用户注册成功后，将产生用户名和密码等账户信息，您可以根据本站规定改变您的密码。用户应谨慎合理的保存、使用其用户名和密码。用户若发现任何非法使用用户账号或存在安全漏洞的情况，请立即通知本站并向公安机关报案。
+						</p>
+
+						<p> 3.4用户同意，京东拥有通过邮件、短信电话等形式，向在本站注册、购物用户、 收货人发送订单信息、促销活动等告知信息的权利。 </p>
+						<p> 3.5用户不得将在本站注册获得的账户借给他人使用，否则用户应承担由此产生的全部责任， 并与实际使用人承担连带责任。 3.6用户同意，京东有权使用用户的注册信息、用户名、密码等信息， 登录进入用户的注册账户，进行证据保全，包括但不限于公证、见证等。 </p>
+
+						<p>第4条 用户依法言行义务 </p>
+						<p> 本协议依据国家相关法律法规规章制定，用户同意严格遵守以下义务： </p>
+						<p>
+							（1）不得传输或发表：煽动抗拒、破坏宪法和法律、行政法规实施的言论 ，煽动颠覆国家政权，推翻社会主义制度的言论，煽动分裂国家、破坏国家统一的的言论 ，煽动民族仇恨、民族歧视、破坏民族团结的言论； </p>
+						<p> （2）从中国大陆向境外传输资料信息时必须符合中国有关法规； </p>
+						<p> （3）不得利用本站从事洗钱、窃取商业秘密、窃取个人信息等违法犯罪活动； </p>
+						<p> （4）不得干扰本站的正常运转，不得侵入本站及国家计算机信息系统； </p>
+						<p> （5）不得传输或发表任何违法犯罪的、骚扰性的、中伤他人的、辱骂性的、恐吓性的、 伤害性的、庸俗的，淫秽的、不文明的等信息资料； </p>
+						<p> （6）不得传输或发表损害国家社会公共利益和涉及国家安全的信息资料或言论； </p>
+						<p> （7）不得教唆他人从事本条所禁止的行为； </p>
+						<p> （8）不得利用在本站注册的账户进行牟利性经营活动； </p>
+						<p> （9）不得发布任何侵犯他人著作权、商标权等知识产权或合法权利的内容； </p>
+				</div>
+			</div>
+
+			<div class="form-submit">
+				<input type="button" value="已阅读并同意该协议 " id="j_btnAdd ">
+			</div>
+		</div>
+		<!--注册大盒子结束-->
+		<!--footer开始-->
+		<div class="footer">
+			<div class="w">
+				<div class="footer-con">
+					<ul>
+						<li><a href="#">关于我们</a></li>
+						<li><a href="#">汇款方式</a></li>
+						<li><a href="#">交易流程</a></li>
+						<li><a href="#">论坛规则</a></li>
+						<li><a href="#">广告投放</a></li>
+						<li><a href="#">道具中心</a></li>
+						<li><a href="#">版权说明</a></li>
+						<li><a href="#">客服中心</a></li>
+						<li><a href="#">免责声明</a></li>
+						<li><a href="#">隐私声明</a></li>
+						<li><a href="#">交易规则</a></li>
+						<li><a href="#">网站导航</a></li>
+					</ul>
+				</div>
+				<div class="hotline">
+					<p>服务热线：<a href="#" style="color:#0066cc;text-decoration: underline">0710-2599158</a> ICP证：鄂ICP备14017091号-1 意见反馈请加QQ群：237284961</p>
+				</div>
+			</div>
+		</div>
+		<!--footer结束-->
+
+	</body>
+
+</html>
